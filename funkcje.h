@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
-int generowanie();
-void test();
+vector<vector<char>> mapa();
