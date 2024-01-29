@@ -4,3 +4,4 @@
 using namespace std;
 
 vector<vector<char>> mapa();
+int gra();

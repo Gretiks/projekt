@@ -5,12 +5,9 @@
 
 int generowanie()
 {
-    // srand(time(NULL));
-
     int wybor_mapy = rand()%3;
 
     return wybor_mapy;
-
 }
 
 vector <vector<char>> mapa()
@@ -57,17 +54,38 @@ vector <vector<char>> mapa3;
 
     int los = generowanie(); //losowanie
 
-    if(los == 0)
+    int ilosc_punktow = 5;
+    vector<vector<char>> wybrana_mapa;
+
+    switch (los)
     {
-        return mapa1;
-    }
-    else if(los == 1)
-    {
-        return mapa2;
-    }
-    else
-    {
-        return mapa3;
+    case 0:
+        for(auto x: mapa1)
+            wybrana_mapa.push_back(x);
+        break;
+    case 1:
+        for(auto x: mapa2)
+            wybrana_mapa.push_back(x);
+        break;
+    case 2:
+        for(auto x: mapa3)
+            wybrana_mapa.push_back(x);
+        break;
     }
 
+    //losowanie punktu gdzie bedzie wstawiony startowy punkt do zebrania
+    int los1 = 0, los2 = 0;
+
+
+    for(int i = 0; i < ilosc_punktow; i++)
+    {
+        while(wybrana_mapa[los1][los2] != ' ')
+        {
+            los1 = rand()%11;
+            los2 = rand()%11;
+        }
+        wybrana_mapa[los1][los2] = '*';
+    }
+
+    return wybrana_mapa;
 }
