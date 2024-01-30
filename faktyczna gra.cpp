@@ -32,13 +32,16 @@ int gra()
         print(plansza);
         znak = char(_getch());
 
-        cout << znak << '\n';
-
-        cout << pozycja_gracza.first << " " << pozycja_gracza.second;
-
         if(znak == 'w')
         {
-            if(plansza[pozycja_gracza.first-1][pozycja_gracza.second] != '#' || plansza[pozycja_gracza.first-1][pozycja_gracza.second] != 'E')
+            if(plansza[pozycja_gracza.first-1][pozycja_gracza.second] == '*')
+            {
+                punkty_gracza++;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
+                pozycja_gracza.first--;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
+            }
+            if(plansza[pozycja_gracza.first-1][pozycja_gracza.second] != '#' && plansza[pozycja_gracza.first-1][pozycja_gracza.second] != 'E')
             {
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.first--;
@@ -47,7 +50,14 @@ int gra()
         }
         else if(znak == 's')
         {
-            if(plansza[pozycja_gracza.first+1][pozycja_gracza.second] != '#' || plansza[pozycja_gracza.first+1][pozycja_gracza.second] != 'E')
+            if(plansza[pozycja_gracza.first+1][pozycja_gracza.second] == '*')
+            {
+                punkty_gracza++;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
+                pozycja_gracza.first++;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
+            }
+            else if(plansza[pozycja_gracza.first+1][pozycja_gracza.second] != '#' && plansza[pozycja_gracza.first+1][pozycja_gracza.second] != 'E')
             {
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.first++;
@@ -56,7 +66,14 @@ int gra()
         }
         else if(znak == 'a')
         {
-            if(plansza[pozycja_gracza.first][pozycja_gracza.second-1] != '#' || plansza[pozycja_gracza.first][pozycja_gracza.second-1] != 'E')
+            if(plansza[pozycja_gracza.first][pozycja_gracza.second-1] == '*')
+            {
+                punkty_gracza++;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
+                pozycja_gracza.second--;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
+            }
+            else if(plansza[pozycja_gracza.first][pozycja_gracza.second-1] != '#' && plansza[pozycja_gracza.first][pozycja_gracza.second-1] != 'E')
             {
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.second--;
@@ -65,7 +82,14 @@ int gra()
         }
         else if(znak == 'd')
         {
-            if(plansza[pozycja_gracza.first][pozycja_gracza.second+1] != '#' || plansza[pozycja_gracza.first][pozycja_gracza.second+1] != 'E')
+            if(plansza[pozycja_gracza.first][pozycja_gracza.second+1] == '*')
+            {
+                punkty_gracza++;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
+                pozycja_gracza.second++;
+                plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
+            }
+            else if(plansza[pozycja_gracza.first][pozycja_gracza.second+1] != '#' && plansza[pozycja_gracza.first][pozycja_gracza.second+1] != 'E')
             {
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.second++;

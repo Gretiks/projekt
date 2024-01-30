@@ -54,7 +54,7 @@ vector <vector<char>> mapa3;
 
     int los = generowanie(); //losowanie
 
-    int ilosc_punktow = 5;
+    int max_ilosc_punktow = 5;
     vector<vector<char>> wybrana_mapa;
 
     switch (los)
@@ -77,7 +77,7 @@ vector <vector<char>> mapa3;
     int los1 = 0, los2 = 0;
 
 
-    for(int i = 0; i < ilosc_punktow; i++)
+    for(int i = 0; i < max_ilosc_punktow; i++)
     {
         while(wybrana_mapa[los1][los2] != ' ')
         {
