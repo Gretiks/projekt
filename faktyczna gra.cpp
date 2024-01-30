@@ -1,8 +1,24 @@
 #include "funkcje.h"
 #include <conio.h> //zbieranie inputu bez entera
 
-void print(vector<vector<char>> mapa) //wypisywanie aktualnego stanu planszy
+pair <int,int> dodanie_punktu(vector<vector<char>> mapa)
 {
+    int los1 = 0, los2 = 0;
+
+    while(mapa[los1][los2] != ' ')
+    {
+        los1 = rand()%11;
+        los2 = rand()%11;
+    }
+
+    return make_pair(los1, los2);
+}
+
+void print(vector<vector<char>> mapa, int punkty_gracza, int punkty_bota) //wypisywanie aktualnego stanu planszy
+{
+    cout << "Gracz  Bot\n";
+    cout << punkty_gracza << "      " << punkty_bota << "\n\n";
+
     for(auto x: mapa)
     {
         for(auto y: x)
@@ -16,7 +32,10 @@ int gra()
 {
     int punkty_gracza = 0;
     int punkty_bota = 0;
+    int curr_liczba_punktow = 5;
+    bool czy_dalej = true; //kontynuowanie gry
 
+    pair <int, int> punkt; //wspolrzedne wylosowanego kolejnego punktu na mapie 
     pair <int, int> pozycja_gracza = make_pair(9,1);
     pair <int, int> pozycja_bota = make_pair(1, 9);
     vector<vector<char>> plansza;
@@ -27,9 +46,11 @@ int gra()
 
     char znak = ' ';
 
-    while(punkty_bota != 20 || punkty_gracza != 20)
+    while(czy_dalej)
     {
-        print(plansza);
+        if(punkty_gracza == 20 || punkty_bota == 20) break;
+
+        print(plansza, punkty_gracza, punkty_bota);
         znak = char(_getch());
 
         if(znak == 'w')
@@ -37,6 +58,8 @@ int gra()
             if(plansza[pozycja_gracza.first-1][pozycja_gracza.second] == '*')
             {
                 punkty_gracza++;
+                punkt = dodanie_punktu(plansza);
+                plansza[punkt.first][punkt.second] = '*';
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.first--;
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
@@ -53,6 +76,8 @@ int gra()
             if(plansza[pozycja_gracza.first+1][pozycja_gracza.second] == '*')
             {
                 punkty_gracza++;
+                punkt = dodanie_punktu(plansza);
+                plansza[punkt.first][punkt.second] = '*';
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.first++;
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
@@ -69,6 +94,8 @@ int gra()
             if(plansza[pozycja_gracza.first][pozycja_gracza.second-1] == '*')
             {
                 punkty_gracza++;
+                punkt = dodanie_punktu(plansza);
+                plansza[punkt.first][punkt.second] = '*';
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.second--;
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
@@ -85,6 +112,8 @@ int gra()
             if(plansza[pozycja_gracza.first][pozycja_gracza.second+1] == '*')
             {
                 punkty_gracza++;
+                punkt = dodanie_punktu(plansza);
+                plansza[punkt.first][punkt.second] = '*';
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = ' ';
                 pozycja_gracza.second++;
                 plansza[pozycja_gracza.first][pozycja_gracza.second] = 'P';
@@ -100,9 +129,15 @@ int gra()
         system("cls");
     }
 
-    print(plansza);
+    if(punkty_bota == 20)
+    cout << "PRZEGRANA\n\n";
+    else
+    cout << "WYGRANA\n\n";
 
+    cout << "Gracz  Bot\n";
+    cout << punkty_gracza << "      " << punkty_bota;
 
+    system("pause");
 
     return 0;
 }
