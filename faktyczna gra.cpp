@@ -82,7 +82,7 @@ int gra()
             ostatni_ruch = chrono::steady_clock::now();
         }
 
-        this_thread::sleep_for(chrono::milliseconds(1));
+        this_thread::sleep_for(chrono::milliseconds(100));
 
 
         //sekcja gracza
@@ -185,10 +185,12 @@ int gra()
     system("cls");
     cout << "Czy chcesz grac jeszcze?\n1. Tak\n2. Nie\n";
 
-    znak = char(_getch()); //przechwytywanie klwisza
 
+    a:
+    znak = char(_getch()); //przechwytywanie klwisza
     if(znak == '1') goto b;
     if(znak == '2') return 0;
+    else goto a;
 }
 
 

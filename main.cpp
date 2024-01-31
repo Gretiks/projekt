@@ -30,4 +30,5 @@ int main()
         goto a;
     }
     if(znak == '4') return 0;
+    else goto a;
 }
